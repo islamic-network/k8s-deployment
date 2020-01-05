@@ -37,6 +37,18 @@ jobs:
             IMAGE_TAG="${CIRCLE_BUILD_NUM}"
             docker tag $IMAGE_NAME:build $IMAGE_NAME:$CIRCLE_TAG
             docker push $IMAGE_NAME:$CIRCLE_TAG
+      - run:
+          name: Install envsubst
+          command: |
+            sudo apt-get update && sudo apt-get -y install gettext-base
+      - run:
+          name: Install kubectl
+          command: |
+            curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+            chmod u+x ./kubectl
+      - run:
+          name: Deploy Code
+          command: ./scripts/deploy.sh
 
 workflows:
   version: 2
