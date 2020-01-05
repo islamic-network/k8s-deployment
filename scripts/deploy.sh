@@ -20,4 +20,5 @@ echo "$K8S_CLUSTER_CERTIFICATE" | base64 --decode > cert.crt
   --server=$K8S_SERVER \
   --certificate-authority=cert.crt \
   --token=$K8S_TOKEN \
+  --namespace=islamic-network \
   apply -f ./.kube/
