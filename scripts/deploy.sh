@@ -13,8 +13,6 @@ export COMMIT_TAG=$COMMIT_TAG
 envsubst <./.kube/manifest.yml >./.kube/manifest.yml.out
 mv ./.kube/manifest.yml.out ./.kube/manifest.yml
 
-cat ./.kube/manifest.yml
-
 echo "$K8S_CLUSTER_CERTIFICATE" | base64 --decode > cert.crt
 
 ./kubectl \
