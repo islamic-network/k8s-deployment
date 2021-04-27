@@ -15,9 +15,4 @@ mv ./.k8s/manifest-europe.yml.out ./.k8s/manifest-europe.yml
 
 echo "$K8S_ASIA_CERTIFICATE" | base64 --decode > cert.crt
 
-./kubectl \
-  --kubeconfig=/dev/null \
-  --server=$K8S_ASIA_SERVER \
-  --certificate-authority=cert.crt \
-  --token=$K8S_ASIA_TOKEN \
-  apply -f ./.k8s/
+./kubectl --kubeconfig=/dev/null --server=$K8S_ASIA_SERVER --certificate-authority=cert.crt --token=$K8S_ASIA_TOKEN apply -f ./.k8s/
