@@ -8,6 +8,8 @@ COMMIT_TAG=$CIRCLE_TAG
 export COMMIT_TAG=$COMMIT_TAG
 
 echo "Deploying to the cluster in Europe..."
+pwd
+ls -la
 envsubst <./.k8s/manifest-europe.yml >./.k8s/manifest-europe.yml.out
 mv ./.k8s/manifest-europe.yml.out ./.k8s/manifest-europe.yml
 
