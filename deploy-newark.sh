@@ -11,8 +11,8 @@ echo "Deploying to the cluster in Newark..."
 envsubst <./.k8s/manifest-newark.yml >./.k8s/manifest-newark.yml.out
 mv ./.k8s/manifest-newark.yml.out ./.k8s/manifest-newark.yml
 
-echo "$K8S_NEWARK_CERTIFICATE" | base64 --decode > cert-newark.crt
+echo "$K8S_NEWARK_CA" | base64 --decode > cert-newark.crt
 ls -la
-./kubectl apply -f ./.k8s/manifest-newark.yml --kubeconfig=/dev/null --server=$K8S_NEWARK_SERVER --certificate-authority=cert-newark.crt --token=$K8S_NEWARK_TOKEN
+./kubectl apply -f ./.k8s/manifest-newark.yml --kubeconfig=/dev/null --server=$K8S_NEWARK_URL --certificate-authority=cert-newark.crt --token=$K8S_NEWARK_TOKEN
 
 

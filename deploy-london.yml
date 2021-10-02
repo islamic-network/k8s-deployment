@@ -11,8 +11,8 @@ echo "Deploying to the cluster in london..."
 envsubst <./.k8s/manifest-london.yml >./.k8s/manifest-london.yml.out
 mv ./.k8s/manifest-london.yml.out ./.k8s/manifest-london.yml
 
-echo "$K8S_LONDON_CERTIFICATE" | base64 --decode > cert-london.crt
+echo "$K8S_LONDON_CA" | base64 --decode > cert-london.crt
 ls -la
-./kubectl apply -f ./.k8s/manifest-london.yml --kubeconfig=/dev/null --server=$K8S_LONDON_SERVER --certificate-authority=cert-london.crt --token=$K8S_LONDON_TOKEN
+./kubectl apply -f ./.k8s/manifest-london.yml --kubeconfig=/dev/null --server=$K8S_LONDON_URL --certificate-authority=cert-london.crt --token=$K8S_LONDON_TOKEN
 
 
