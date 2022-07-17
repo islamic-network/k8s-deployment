@@ -7,8 +7,6 @@ COMMIT_TAG=$REF_NAME
 # We must export it so it's available for envsubst
 export COMMIT_TAG=$REF_NAME
 
-echo $COMMIT_TAG
-
 echo "Deploying to the cluster..."
 envsubst <./.k8s/manifest.yml >./.k8s/manifest.yml.out
 mv ./.k8s/manifest.yml.out ./.k8s/manifest.yml
